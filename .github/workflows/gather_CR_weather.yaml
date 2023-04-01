@@ -39,10 +39,9 @@ jobs:
           SNOWSQL_ROLE: ${{ secrets.SNOWSQL_ROLE }}
           SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
           SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
-          SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
           api_key: ${{ secrets.api_key }}
         run: |
           cd $GITHUB_WORKSPACE
-          
+
       - name: Gather Weather
         run: python Weather.py
