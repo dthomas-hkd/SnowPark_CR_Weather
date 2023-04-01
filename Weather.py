@@ -1,35 +1,9 @@
 from datetime import timezone
 from snowflake.snowpark import Session
-from snowflake.snowpark.types import VariantType,  StructField, StructType
 from snowflake.snowpark.functions import col
 from utils import snowpark_utils
-import pandas as pd , urllib.request, json, re, sys, os
+import pandas as pd , urllib.request, json, sys, os
 
-# Get Public IP
-
-
-# def getPublicIP():
-#     data = str(urllib.request.urlopen('http://checkip.dyndns.com/').read())
-#     return re.compile(r'Address: (\d+.\d+.\d+.\d+)').search(data).group(1)
-
-# IP = str(getPublicIP())
-
-# # Get Location
-# url = 'http://ipinfo.io/' + IP + '/json'
-# response = urllib.request.urlopen(url)
-# data_ip = json.load(response)
-# city = data_ip['city']
-# location = data_ip['loc']
-
-# lat = location.split(",")[0]
-# lon = location.split(",")[1]
-
-# print(lat)
-# print(lon)
-
-
-# print(data_ip)
-# print(city)
 
 def obtain_CR_prov_ids () -> list:
 

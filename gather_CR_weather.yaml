@@ -1,0 +1,42 @@
+name: Gather CR Weather
+
+# Controls when the action will run. 
+on:
+  schedule:
+    = cron: "*/10 * * * *" #runs every 10 minutes
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python 3.8
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install Python packages
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Configure environment
+        env:
+          SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
+          SNOWSQL_USER: ${{ secrets.SNOWSQL_USER }}
+          SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
+          SNOWSQL_ROLE: ${{ secrets.SNOWSQL_ROLE }}
+          SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
+          SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
+          SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
+          api_key: ${{ secrets.api_key }}
+
+      - name: Gather Weather
+        run: python Weather.py
