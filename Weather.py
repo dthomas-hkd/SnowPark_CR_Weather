@@ -80,7 +80,7 @@ if __name__ == "__main__":
     parent_dir = os.path.dirname(current_dir)
     sys.path.append(parent_dir)
   
-    api_key= os.environ["api_key"]
+    api_key= os.environ["API_KEY"]
     
     CR_prov_df = obtain_CR_prov_ids()
 
