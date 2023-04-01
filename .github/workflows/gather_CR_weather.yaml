@@ -33,13 +33,13 @@ jobs:
 
       - name: Configure environment
         env:
-          SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
-          SNOWSQL_USER: ${{ secrets.SNOWSQL_USER }}
-          SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
-          SNOWSQL_ROLE: ${{ secrets.SNOWSQL_ROLE }}
-          SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
-          SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
-          api_key: ${{ secrets.API_KEY }}
+          SNOWSQL_ACCOUNT: '${{ secrets.SNOWSQL_ACCOUNT }}'
+          SNOWSQL_USER: '${{ secrets.SNOWSQL_USER }}'
+          SNOWSQL_PWD: '${{ secrets.SNOWSQL_PWD }}'
+          SNOWSQL_ROLE: '${{ secrets.SNOWSQL_ROLE }}'
+          SNOWSQL_WAREHOUSE: '${{ secrets.SNOWSQL_WAREHOUSE }}'
+          SNOWSQL_DATABASE: '${{ secrets.SNOWSQL_DATABASE }}'
+          API_KEY: '${{ secrets.API_KEY }}'
         run: |
           cd $GITHUB_WORKSPACE
 
