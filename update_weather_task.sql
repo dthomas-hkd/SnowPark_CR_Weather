@@ -7,7 +7,6 @@ USE SCHEMA HLB_TEST.PUBLIC;
 -- Step #1: Create the CLEANED_RAW_WEATHER_STREAM to ingest data
 -- ----------------------------------------------------------------------------
 
-drop stream CLEANED_RAW_WEATHER_STREAM;
 
 CREATE STREAM IF NOT EXISTS CLEANED_RAW_WEATHER_STREAM ON TABLE CLEANED_RAW_WEATHER;
 
@@ -31,7 +30,7 @@ CALL INSERT_INTO_WEATHER();
 -- Step #3: Execute the tasks
 -- ----------------------------------------------------------------------------
 
-ALTER TASK WEATHER_UPDATE_TASK SUSPEND;
+ALTER TASK WEATHER_UPDATE_TASK RESUME;
 EXECUTE TASK WEATHER_UPDATE_TASK;
 
 
