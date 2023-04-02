@@ -1,4 +1,5 @@
 import pandas as pd , urllib.request, json
+import repackage
 
 def obtain_CR_prov_ids () -> list:
 
@@ -73,7 +74,8 @@ if __name__ == "__main__":
     
     import os, sys
 
-    from ... utils import snowpark_utils
+    repackage.up()
+    from utils import snowpark_utils
 
     session = snowpark_utils.get_snowpark_session()
   
