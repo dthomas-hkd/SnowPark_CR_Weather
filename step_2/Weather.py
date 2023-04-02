@@ -3,7 +3,9 @@ import repackage
 
 def obtain_CR_prov_ids () -> list:
 
-    with open('SnowPark_CR_Weather/step_2/city_list.json') as file:
+    print(os.getcwd)
+
+    with open('city_list.json') as file:
         data = json.load(file)
 
     df = pd.DataFrame(data)
@@ -72,7 +74,7 @@ def upload_raw_data (data_df):
 
 if __name__ == "__main__":
     
-    import os, sys
+    import os
 
     repackage.up()
     from utils import snowpark_utils
