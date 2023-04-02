@@ -75,12 +75,14 @@ if __name__ == "__main__":
     # current_dir = os.getcwd()
 
     print(os.getcwd())
-    
-    os.chdir('../')
-
-    print(os.getcwd())
 
     print(os.listdir(os.getcwd()))
+
+    # os.chdir('../')
+
+    # print(os.getcwd())
+
+    # print(os.listdir(os.getcwd()))
 
     from utils import snowpark_utils
 
