@@ -6,8 +6,9 @@ USE SCHEMA HLB_TEST.PUBLIC;
 -- ----------------------------------------------------------------------------
 -- Step #1: Create the tasks to call our Python stored procedur
 -- ----------------------------------------------------------------------------
-CREATE STREAM IF NOT EXISTS WEATHER_STREAN ON TABLE WEATHER SHOW_INITIAL_ROWS = TRUE;
+CREATE STREAM IF NOT EXISTS CLEANED_RAW_WEATHER_STREAM ON TABLE CLEANED_RAW_WEATHER SHOW_INITIAL_ROWS = TRUE;
 
+DROP WEATHER_STREA;
 -- ----------------------------------------------------------------------------
 -- Step #2: Create the tasks to call our Python stored procedur
 -- ----------------------------------------------------------------------------
