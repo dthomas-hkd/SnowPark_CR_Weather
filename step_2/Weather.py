@@ -73,7 +73,7 @@ if __name__ == "__main__":
     
     import os, sys
 
-    from ... import snowpark_utils
+    from ... utils import snowpark_utils
 
     session = snowpark_utils.get_snowpark_session()
   
