@@ -4,14 +4,12 @@ import repackage
 def obtain_CR_prov_ids () -> list:
 
     current_dir = os.getcwd()
-    print(current_dir)
 
     for root, dirs, files in os.walk(current_dir):
         for file in files:
             if file.endswith(".json"):
                 city_list=(os.path.join(root, file))
-    print(city_list)
-   
+    
     with open(city_list) as file:
         data = json.load(file)
 

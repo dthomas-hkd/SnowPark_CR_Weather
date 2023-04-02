@@ -1,6 +1,4 @@
-from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col, call_udf
-from utils import snowpark_utils
 from unidecode import unidecode
 import sys
 
@@ -11,8 +9,6 @@ from utils import snowpark_utils
 session = snowpark_utils.get_snowpark_session()
 
 weather_table = session.table("FINAL_WEATHER")
-
-print(weather_table.count())
 
 provinces_df = weather_table.select("city_name").distinct().collect()
 
@@ -30,3 +26,4 @@ for province in provinces_df:
     result = province_data.createOrReplaceView("WEATHER_"+province_name_uni)
     
     print(result[0][0])
+    print()
