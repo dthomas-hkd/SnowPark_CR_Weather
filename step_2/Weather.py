@@ -6,7 +6,7 @@ def obtain_CR_prov_ids () -> list:
     current_dir = os.getcwd()
     print(current_dir)
 
-    with open(current_dir+'step2/city_list.json') as file:
+    with open(current_dir+'/step2/city_list.json') as file:
         data = json.load(file)
 
     df = pd.DataFrame(data)
