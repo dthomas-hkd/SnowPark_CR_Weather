@@ -3,9 +3,13 @@
 USE WAREHOUSE COMPUTE_WH;
 USE SCHEMA HLB_TEST.PUBLIC;
 
-
 -- ----------------------------------------------------------------------------
 -- Step #1: Create the tasks to call our Python stored procedur
+-- ----------------------------------------------------------------------------
+CREATE STREAM IF NOT EXISTS WEATHER_STREAN ON TABLE WEATHER SHOW_INITIAL_ROWS = TRUE;
+
+-- ----------------------------------------------------------------------------
+-- Step #2: Create the tasks to call our Python stored procedur
 -- ----------------------------------------------------------------------------
 
 CREATE OR REPLACE TASK WEATHER_UPDATE_TASK
@@ -16,15 +20,15 @@ CALL INSERT_INTO_WEATHER();
 
 
 -- ----------------------------------------------------------------------------
--- Step #2: Execute the tasks
+-- Step #3: Execute the tasks
 -- ----------------------------------------------------------------------------
 
-ALTER TASK WEATHER_UPDATE_TASK RESUME;
+ALTER TASK WEATHER_UPDATE_TASK SUSPEND;
 EXECUTE TASK WEATHER_UPDATE_TASK;
 
 
 -- ----------------------------------------------------------------------------
--- Step #3: Monitor tasks in Snowsight
+-- Step #4: Monitor tasks in Snowsight
 -- ----------------------------------------------------------------------------
 
 
