@@ -1,5 +1,3 @@
-from snowflake.snowpark import Session
-from utils import snowpark_utils
 import pandas as pd , urllib.request, json, sys, os
 
 
@@ -74,9 +72,12 @@ def upload_raw_data (data_df):
 
 if __name__ == "__main__":
 
-    current_dir = os.getcwd()
-    parent_dir = os.path.dirname(current_dir)
-    sys.path.append(parent_dir)
+    import sys
+    sys.path.insert(1, 'SnowPark_CR_Weather')
+
+    from utils import snowpark_utils
+    
+    session = snowpark_utils.get_snowpark_session()
   
     api_key= os.environ["API_KEY"]  
 
