@@ -47,7 +47,7 @@ def obtain_city_data(CR_prov_df):
 
         print(json_object)
 
-        data.append(json_object.replace(" ", ""))
+        data.append(json_object)
 
     data_df = pd.DataFrame({'data': data})
     
