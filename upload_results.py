@@ -48,7 +48,7 @@ def insert_cleaned_data(session: Session) -> str:
             print( 'Cleaned results:' )
             print( result )
 
-        return ("Successfully inserted"+ str(result['number of rows inserted'])+ " and truncated table CLEANED_RAW_WEATHER")
+        return ("Successfully inserted"+ str(result)+ " and truncated table CLEANED_RAW_WEATHER")
 
     else:
         return ("No data found in CLEANED_RAW_WEATHER")
