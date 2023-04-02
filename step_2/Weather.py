@@ -80,6 +80,8 @@ if __name__ == "__main__":
 
     print(os.getcwd())
 
+    print(os.listdir(os.getcwd()))
+
     from utils import snowpark_utils
 
     session = snowpark_utils.get_snowpark_session()
