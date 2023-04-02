@@ -1,4 +1,4 @@
-import pandas as pd , urllib.request, json, sys, os
+import pandas as pd , urllib.request, json
 
 
 def obtain_CR_prov_ids () -> list:
@@ -71,12 +71,13 @@ def upload_raw_data (data_df):
         print(r)
 
 if __name__ == "__main__":
-
-    import sys
-    sys.path.insert(1, 'SnowPark_CR_Weather')
-
-    from utils import snowpark_utils
     
+    import os, sys
+    current_dir = os.getcwd()
+    parent_parent_dir = os.path.dirname(os.path.dirname(current_dir))
+    sys.path.append(parent_parent_dir)  
+    from utils import snowpark_utils
+
     session = snowpark_utils.get_snowpark_session()
   
     api_key= os.environ["API_KEY"]  
