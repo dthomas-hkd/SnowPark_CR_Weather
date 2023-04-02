@@ -3,7 +3,7 @@ import pandas as pd , urllib.request, json, sys, os
 
 def obtain_CR_prov_ids () -> list:
 
-    with open('city_list.json') as file:
+    with open('SnowPark_CR_Weather/step_2/city_list.json') as file:
         data = json.load(file)
 
     df = pd.DataFrame(data)
