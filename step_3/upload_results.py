@@ -12,7 +12,7 @@ def insert_cleaned_data(session: Session) -> str:
         
             INSERT INTO CR_WEATHER.WEATHER.FINAL_WEATHER ( date, city_id, city_name, country, temp, feels_like, temp_min, temp_max, pressure,
                         humidity, weather_main, weather_description, clouds, wind_speed, visibility, coord_lon,coord_lat)
-            SELECT 
+            SELECT `
                 TO_TIMESTAMP_NTZ($1:dt),
                 $1:id,
                 $1:name,
@@ -30,7 +30,7 @@ def insert_cleaned_data(session: Session) -> str:
                 $1:visibility,
                 $1:coord.lon,
                 $1:coord.lat
-            FROM HLB_TEST.PUBLIC.RAW_WEATHER_STAGE_STREAM
+            FROM CR_WEATHER.WEATHER.RAW_WEATHER_STAGE_STREAM
             WHERE METADATA$ACTION = 'INSERT'
 
         """).collect()
