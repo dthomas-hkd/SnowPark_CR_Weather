@@ -1,4 +1,5 @@
 from snowflake.snowpark import Session
+# from utils import snowpark_utils
 
 def insert_cleaned_data(session: Session) -> str:
 
@@ -40,10 +41,15 @@ def insert_cleaned_data(session: Session) -> str:
 
         if rows_inserted > 0:
 
-            session.sql("TRUNCATE TABLE HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER")
+            result_trunc = session.sql("TRUNCATE TABLE HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER").collect()
+
+            print (result_trunc)
 
         return ("Successfully inserted "+ str(rows_inserted)+ " rows into table WEATHER and truncated table CLEANED_RAW_WEATHER")
 
     else:
         return ("No data found in CLEANED_RAW_WEATHER")
 
+# session = snowpark_utils.get_snowpark_session()
+
+# insert_cleaned_data(session)
