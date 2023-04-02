@@ -39,4 +39,4 @@ jobs:
           SNOWSQL_DATABASE: '${{ secrets.SNOWSQL_DATABASE }}'
           SNOWSQL_SCHEMA: '${{ secrets.SNOWSQL_SCHEMA }}'
           API_KEY: '${{ secrets.API_KEY }}'
-        run: python Weather.py $GITHUB_WORKSPACE
+        run: python step_2/Weather.py $GITHUB_WORKSPACE
