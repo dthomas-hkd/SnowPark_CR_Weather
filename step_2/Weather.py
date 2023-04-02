@@ -72,12 +72,14 @@ def upload_raw_data (data_df):
 if __name__ == "__main__":
     
     import os, sys
-    current_dir = os.getcwd()
-    print(current_dir)
+    # current_dir = os.getcwd()
 
-    parent_parent_dir = os.path.dirname(os.path.dirname(current_dir))
-    print(parent_parent_dir)
+    print(os.getcwd())
     
+    os.chdir('../')
+
+    print(os.getcwd())
+
     from utils import snowpark_utils
 
     session = snowpark_utils.get_snowpark_session()
