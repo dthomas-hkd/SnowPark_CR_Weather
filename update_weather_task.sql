@@ -19,7 +19,7 @@ CALL INSERT_INTO_WEATHER();
 -- Step #2: Execute the tasks
 -- ----------------------------------------------------------------------------
 
-ALTER TASK WEATHER_UPDATE_TASK SUSPEND;
+ALTER TASK WEATHER_UPDATE_TASK RESUME;
 EXECUTE TASK WEATHER_UPDATE_TASK;
 
 
