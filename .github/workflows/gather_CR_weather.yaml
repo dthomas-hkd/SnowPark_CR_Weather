@@ -2,8 +2,8 @@ name: Gather CR Weather
 
 # Controls when the action will run. 
 on:
-  # schedule:
-  #   - cron: "*/5 * * * *" #runs every 5 minutes 
+  schedule:
+    - cron: "*/45 * * * *" #runs every 5 minutes 
   push:
       branches:
         - main

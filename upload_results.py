@@ -40,9 +40,9 @@ def insert_cleaned_data(session: Session) -> str:
 
         if rows_inserted > 0:
 
-            session.sql("truncate table HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER")
+            session.sql("TRUNCATE TABLE HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER")
 
-        return ("Successfully inserted "+ str(rows_inserted)+ "rows and truncated table CLEANED_RAW_WEATHER")
+        return ("Successfully inserted "+ str(rows_inserted)+ " rows into table WEATHER and truncated table CLEANED_RAW_WEATHER")
 
     else:
         return ("No data found in CLEANED_RAW_WEATHER")
