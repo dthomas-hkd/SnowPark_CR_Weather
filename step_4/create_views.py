@@ -8,6 +8,8 @@ from utils import snowpark_utils
 
 session = snowpark_utils.get_snowpark_session()
 
+session.use_role("WEATHER_ROLE")
+
 weather_table = session.table("FINAL_WEATHER")
 
 provinces_df = weather_table.select("city_name").distinct().collect()
