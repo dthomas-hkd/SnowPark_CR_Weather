@@ -1,6 +1,4 @@
-from datetime import timezone
 from snowflake.snowpark import Session
-from snowflake.snowpark.functions import col
 from utils import snowpark_utils
 import pandas as pd , urllib.request, json, sys, os
 
