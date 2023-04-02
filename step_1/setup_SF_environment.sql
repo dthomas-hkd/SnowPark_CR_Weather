@@ -50,7 +50,7 @@ CREATE OR REPLACE TABLE RAW_WEATHER_STAGE (
 );
 
 
-CREATE TABLE IF NOT EXISTS  WEATHER (
+CREATE TABLE IF NOT EXISTS FINAL_WEATHER (
     date timestamp,
     city_id number,
     city_name text,

@@ -58,16 +58,16 @@ def upload_raw_data (data_df):
 
     session = snowpark_utils.get_snowpark_session()
        
-    session.write_pandas(data_df, "raw_weather_2", quote_identifiers= False, auto_create_table=True, table_type = "temp")
+    session.write_pandas(data_df, "raw_weather_temp", quote_identifiers= False, auto_create_table=True, table_type = "temp")
 
-    cleaned_raw_data = session.sql("select parse_json(data) as data from raw_weather_2")
+    cleaned_raw_data = session.sql("select parse_json(data) as data from raw_weather_temp")
     
-    cleaned_raw_data.write.mode("append").save_as_table("cleaned_raw_weather")
+    cleaned_raw_data.write.mode("append").save_as_table("RAW_WEATHER_STAGE")
 
-    upload_results = session.table("cleaned_raw_weather").collect()
+    upload_results = session.table("RAW_WEATHER_STAGE").collect()
 
     print()
-    print("cleaned_raw_weather current content:")
+    print("RAW_WEATHER_STAGE current content:")
     for r in upload_results:
         print()
         print(r)

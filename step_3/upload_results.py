@@ -1,17 +1,16 @@
 from snowflake.snowpark import Session
-# from utils import snowpark_utils
 
 def insert_cleaned_data(session: Session) -> str:
 
-    validate_CLEANED_RAW_WEATHER_STREAM = session.sql("SELECT * FROM CLEANED_RAW_WEATHER_STREAM WHERE METADATA$ACTION = 'INSERT'")
+    validate_RAW_WEATHER_STAGE_STREAM = session.sql("SELECT * FROM RAW_WEATHER_STAGE_STREAM WHERE METADATA$ACTION = 'INSERT'")
     
-    validate_CLEANED_RAW_WEATHER_STREAM_result = (validate_CLEANED_RAW_WEATHER_STREAM.count())
+    validate_RAW_WEATHER_STAGE_STREAM_result  = (validate_RAW_WEATHER_STAGE_STREAM.count())
 
-    if validate_CLEANED_RAW_WEATHER_STREAM_result > 0:
+    if validate_RAW_WEATHER_STAGE_STREAM_result > 0:
 
         insert_result = session.sql("""
         
-            INSERT INTO HLB_TEST.PUBLIC.WEATHER( date, city_id, city_name, country, temp, feels_like, temp_min, temp_max, pressure,
+            INSERT INTO CR_WEATHER.WEATHER.FINAL_WEATHER ( date, city_id, city_name, country, temp, feels_like, temp_min, temp_max, pressure,
                         humidity, weather_main, weather_description, clouds, wind_speed, visibility, coord_lon,coord_lat)
             SELECT 
                 TO_TIMESTAMP_NTZ($1:dt),
@@ -31,7 +30,7 @@ def insert_cleaned_data(session: Session) -> str:
                 $1:visibility,
                 $1:coord.lon,
                 $1:coord.lat
-            FROM HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER_STREAM
+            FROM HLB_TEST.PUBLIC.RAW_WEATHER_STAGE_STREAM
             WHERE METADATA$ACTION = 'INSERT'
 
         """).collect()
@@ -40,11 +39,7 @@ def insert_cleaned_data(session: Session) -> str:
 
         rows_inserted =  result['number of rows inserted'] 
 
-        return ("Successfully inserted "+ str(rows_inserted)+ " rows into table WEATHER and truncated table CLEANED_RAW_WEATHER")
+        return ("Successfully inserted "+ str(rows_inserted)+ " rows into table FINAL_WEATHER")
 
     else:
-        return ("No data found in CLEANED_RAW_WEATHER_STREAM")
-
-# session = snowpark_utils.get_snowpark_session()
-
-# insert_cleaned_data(session)
+        return ("No data found in RAW_WEATHER_STAGE_STREAM")

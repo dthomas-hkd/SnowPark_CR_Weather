@@ -2,10 +2,15 @@ from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col, call_udf
 from utils import snowpark_utils
 from unidecode import unidecode
+import sys
+
+sys.path.insert(1, 'SnowPark_CR_Weather')
+
+from utils import snowpark_utils
 
 session = snowpark_utils.get_snowpark_session()
 
-weather_table = session.table("Weather")
+weather_table = session.table("FINAL_WEATHER")
 
 print(weather_table.count())
 
