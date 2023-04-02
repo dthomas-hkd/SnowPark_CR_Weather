@@ -1,18 +1,15 @@
 --CREATE TASK WEATHER_UPDATE_TASK
 
-USE WAREHOUSE COMPUTE_WH;
-USE SCHEMA HLB_TEST.PUBLIC;
+USE WAREHOUSE WEATHER_WH;
+USE SCHEMA CR_WEATHER.WEATHER;
 
 -- ----------------------------------------------------------------------------
 -- Step #1: Create the CLEANED_RAW_WEATHER_STREAM to ingest data
 -- ----------------------------------------------------------------------------
 
+DESC STREAM RAW_WEATHER_STAGE_STREAM;
 
-CREATE STREAM IF NOT EXISTS CLEANED_RAW_WEATHER_STREAM ON TABLE CLEANED_RAW_WEATHER;
-
-DESC STREAM CLEANED_RAW_WEATHER_STREAM;
-
-SELECT * FROM CLEANED_RAW_WEATHER_STREAM;
+SELECT * FROM RAW_WEATHER_STAGE_STREAM;
 
 
 -- ----------------------------------------------------------------------------
@@ -20,7 +17,7 @@ SELECT * FROM CLEANED_RAW_WEATHER_STREAM;
 -- ----------------------------------------------------------------------------
 
 CREATE OR REPLACE TASK WEATHER_UPDATE_TASK
-WAREHOUSE = COMPUTE_WH
+WAREHOUSE = WEATHER_WH
 SCHEDULE = '60 MINUTE'
 AS
 CALL INSERT_INTO_WEATHER();
