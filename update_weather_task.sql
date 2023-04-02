@@ -4,15 +4,18 @@ USE WAREHOUSE COMPUTE_WH;
 USE SCHEMA HLB_TEST.PUBLIC;
 
 -- ----------------------------------------------------------------------------
--- Step #1: Create the tasks to call our Python stored procedur
+-- Step #1: Create the CLEANED_RAW_WEATHER_STREAM to ingest data
 -- ----------------------------------------------------------------------------
 
-DROP STREAM CLEANED_RAW_WEATHER_STREAM;
+drop stream CLEANED_RAW_WEATHER_STREAM;
+
 CREATE STREAM IF NOT EXISTS CLEANED_RAW_WEATHER_STREAM ON TABLE CLEANED_RAW_WEATHER;
+
+DESC STREAM CLEANED_RAW_WEATHER_STREAM;
 
 SELECT * FROM CLEANED_RAW_WEATHER_STREAM;
 
-DESC STREAM CLEANED_RAW_WEATHER_STREAM;
+
 -- ----------------------------------------------------------------------------
 -- Step #2: Create the tasks to call our Python stored procedur
 -- ----------------------------------------------------------------------------

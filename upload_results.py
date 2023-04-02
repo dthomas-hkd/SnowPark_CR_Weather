@@ -3,7 +3,7 @@ from snowflake.snowpark import Session
 
 def insert_cleaned_data(session: Session) -> str:
 
-    validate_CLEANED_RAW_WEATHER_STREAM = session.sql("SELECT * FROM CLEANED_RAW_WEATHER_STREAM")
+    validate_CLEANED_RAW_WEATHER_STREAM = session.sql("SELECT * FROM CLEANED_RAW_WEATHER_STREAM WHERE METADATA$ACTION = 'INSERT'")
     
     validate_CLEANED_RAW_WEATHER_STREAM_result = (validate_CLEANED_RAW_WEATHER_STREAM.count())
 
@@ -31,7 +31,8 @@ def insert_cleaned_data(session: Session) -> str:
                 $1:visibility,
                 $1:coord.lon,
                 $1:coord.lat
-            FROM HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER_STREAM;
+            FROM HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER_STREAM
+            WHERE METADATA$ACTION = 'INSERT'
 
         """).collect()
 
