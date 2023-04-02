@@ -36,19 +36,13 @@ def insert_cleaned_data(session: Session) -> str:
 
         result = (insert_result[0].as_dict())
 
-        print( 'Number of rows inserted' )
-        print( result['number of rows inserted'] )
+        rows_inserted =  result['number of rows inserted'] 
 
-        if result['number of rows inserted']  > 0:
+        if rows_inserted > 0:
 
-            clean_stage_table_result = session.sql("truncate table HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER").collect()
-            
-            result = (clean_stage_table_result[0].as_dict())
+            session.sql("truncate table HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER")
 
-            print( 'Cleaned results:' )
-            print( result )
-
-        return ("Successfully inserted"+ str(result)+ " and truncated table CLEANED_RAW_WEATHER")
+        return ("Successfully inserted"+ str(rows_inserted)+ " and truncated table CLEANED_RAW_WEATHER")
 
     else:
         return ("No data found in CLEANED_RAW_WEATHER")
