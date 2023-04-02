@@ -3,11 +3,11 @@ from snowflake.snowpark import Session
 
 def insert_cleaned_data(session: Session) -> str:
 
-    validate_CLEANED_RAW_WEATHER = session.sql("SELECT * FROM CLEANED_RAW_WEATHER")
+    validate_CLEANED_RAW_WEATHER_STREAM = session.sql("SELECT * FROM CLEANED_RAW_WEATHER_STREAM")
     
-    validate_CLEANED_RAW_WEATHER_result = (validate_CLEANED_RAW_WEATHER.count())
+    validate_CLEANED_RAW_WEATHER_STREAM_result = (validate_CLEANED_RAW_WEATHER_STREAM.count())
 
-    if validate_CLEANED_RAW_WEATHER_result > 0:
+    if validate_CLEANED_RAW_WEATHER_STREAM_result > 0:
 
         insert_result = session.sql("""
         
@@ -31,7 +31,7 @@ def insert_cleaned_data(session: Session) -> str:
                 $1:visibility,
                 $1:coord.lon,
                 $1:coord.lat
-            FROM HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER;
+            FROM HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER_STREAM;
 
         """).collect()
 
@@ -39,16 +39,10 @@ def insert_cleaned_data(session: Session) -> str:
 
         rows_inserted =  result['number of rows inserted'] 
 
-        if rows_inserted > 0:
-
-            result_trunc = session.sql("TRUNCATE TABLE HLB_TEST.PUBLIC.CLEANED_RAW_WEATHER").collect()
-
-            print (result_trunc)
-
         return ("Successfully inserted "+ str(rows_inserted)+ " rows into table WEATHER and truncated table CLEANED_RAW_WEATHER")
 
     else:
-        return ("No data found in CLEANED_RAW_WEATHER")
+        return ("No data found in CLEANED_RAW_WEATHER_STREAM")
 
 # session = snowpark_utils.get_snowpark_session()
 
