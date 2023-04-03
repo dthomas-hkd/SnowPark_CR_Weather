@@ -33,7 +33,7 @@ def get_snowpark_session() -> Session:
             "account": os.environ["SNOWSQL_ACCOUNT"],
             "user": os.environ["SNOWSQL_USER"],
             "password": os.environ["SNOWSQL_PWD"],
-            # "role": os.environ["SNOWSQL_ROLE"],
+            "role": os.environ["SNOWSQL_ROLE"],
             "warehouse": os.environ["SNOWSQL_WAREHOUSE"],
             "database": os.environ["SNOWSQL_DATABASE"],
             "schema": os.environ["SNOWSQL_SCHEMA"]

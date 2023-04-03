@@ -3,6 +3,8 @@
 USE WAREHOUSE WEATHER_WH;
 USE SCHEMA CR_WEATHER.WEATHER;
 
+USE ROLE WEATHER_ROLE;
+
 -- ----------------------------------------------------------------------------
 -- Step #1: Create the CLEANED_RAW_WEATHER_STREAM to ingest data
 -- ----------------------------------------------------------------------------
