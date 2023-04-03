@@ -67,7 +67,7 @@ def upload_raw_data (data_df):
 
     cleaned_raw_data = session.sql("select parse_json(data) as data from raw_weather_temp")
     
-    cleaned_raw_data.write.mode("overwrite").save_as_table("RAW_WEATHER_STAGE")
+    cleaned_raw_data.write.mode("append").save_as_table("RAW_WEATHER_STAGE")
 
     upload_results = session.table("RAW_WEATHER_STAGE").collect()
 
