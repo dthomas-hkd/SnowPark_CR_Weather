@@ -2,7 +2,6 @@
 
 USE WAREHOUSE WEATHER_WH;
 USE SCHEMA CR_WEATHER.WEATHER;
-
 USE ROLE WEATHER_ROLE;
 
 -- ----------------------------------------------------------------------------
