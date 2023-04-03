@@ -11,7 +11,7 @@ def insert_cleaned_data(session: Session) -> str:
         insert_result = session.sql("""
             INSERT INTO CR_WEATHER.WEATHER.FINAL_WEATHER ( date, city_id, city_name, country, temp, feels_like, temp_min, temp_max, pressure,
                         humidity, weather_main, weather_description, clouds, wind_speed, visibility, coord_lon,coord_lat)
-            SELECT
+            SELECT DISTINCT
                 TO_TIMESTAMP_NTZ($1:dt),
                 $1:id,
                 $1:name,
