@@ -37,9 +37,7 @@ def insert_cleaned_data(session: Session) -> str:
 
         rows_inserted =  result['number of rows inserted'] 
 
-        truncate_result = session.sql("truncate table CR_WEATHER.WEATHER.RAW_WEATHER_STAGE")
-
-        return ("Successfully inserted "+ str(rows_inserted)+ " rows into table FINAL_WEATHER and cleaned table RAW_WEATHER_STAGE")
+        return ("Successfully inserted "+ str(rows_inserted)+ " rows into table FINAL_WEATHER")
 
     else:
         return ("No data found in RAW_WEATHER_STAGE_STREAM")
