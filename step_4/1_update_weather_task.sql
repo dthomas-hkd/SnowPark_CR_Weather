@@ -28,7 +28,9 @@ CALL INSERT_INTO_WEATHER();
 -- Step #3: Execute the tasks
 -- ----------------------------------------------------------------------------
 
-ALTER TASK WEATHER_UPDATE_TASK RESUME;
+-- ALTER TASK WEATHER_UPDATE_TASK RESUME;
+ALTER TASK WEATHER_UPDATE_TASK SUSREPEND;
+
 EXECUTE TASK WEATHER_UPDATE_TASK;
 
 
@@ -40,7 +42,7 @@ EXECUTE TASK WEATHER_UPDATE_TASK;
 -- Alternatively, here are some manual queries to get at the same details
 SHOW TASKS;
 
--- Task execution history in the past day
+-- Task execution history in the past 7 days
 SELECT *
 FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY(
     SCHEDULED_TIME_RANGE_START=>DATEADD('DAY',-7,CURRENT_TIMESTAMP()),
