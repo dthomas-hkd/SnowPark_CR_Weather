@@ -69,13 +69,6 @@ def upload_raw_data (data_df):
     
     cleaned_raw_data.write.mode("append").save_as_table("RAW_WEATHER_STAGE")
 
-    upload_results = session.table("RAW_WEATHER_STAGE").collect()
-
-    print()
-    print("RAW_WEATHER_STAGE current content:")
-    for r in upload_results:
-        print()
-        print(r)
 
 if __name__ == "__main__":
     
